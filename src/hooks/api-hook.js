@@ -8,7 +8,7 @@ const useApi = (requestConfig) => {
   // logic errors and loading state
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
-  const data = { car: "Mercedes Benz", YOM: "2007", make: "W203" };
+  const data = { car: "G-Class", YOM: "2007", make: "G-" };
   //   use effect to run the custom api
   // receives the type of request that it to be passed
 
@@ -17,13 +17,10 @@ const useApi = (requestConfig) => {
     const url = import.meta.env.VITE_API_URL;
     try {
       // passing the method dynamically to the endpoint
-      const request = await axios
-        .post(
-          "https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com/data.json",
-          {
-            body: { car: "Mercedes Benz", YOM: "2007", make: "W203" },
-          }
-        )
+      const request = await axios.requestConfig
+        .method(`${url}`, {
+          body: data,
+        })
         .then((response) => {
           console.log("response after calling the api", response);
         });
