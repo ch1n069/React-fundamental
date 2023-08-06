@@ -6,13 +6,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
+// import useCounter from "./hooks/use-counter";
+import { useEffect } from "react";
+import useCounter from "./hooks/use-counter";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const count = useCounter();
 
   return (
     <>
-      <div></div>
+      <div>
+        <h2>This is a counter for a counter</h2>
+        <p> count is{count}</p>
+      </div>
     </>
   );
 }
