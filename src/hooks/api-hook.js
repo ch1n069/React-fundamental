@@ -2,7 +2,9 @@ import { react, useState, useEffect } from "react";
 import axios from "axios";
 
 // this function will receive the following props
-const useApi = () => {
+// we will pass custom requestConfig object to as props
+// the request config object include the method , body , url etc
+const useApi = (requestConfig) => {
   // logic errors and loading state
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -11,11 +13,24 @@ const useApi = () => {
   // receives the type of request that it to be passed
   useEffect(() => {
     // api we will make requests to https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com
-    const apiRequest = () => {
-      const request = axios.post(`${import.meta.env.VITE_API_}`, {
-        body: data,
-      });
+    const apiRequest = async () => {
+      try {
+        const request = await axios
+          .post(`${import.meta.env.VITE_API_}`, {
+            body: data,
+          })
+          .then((response) => {
+            console.log("response after calling the api", response);
+          });
+        const response = request.data;
+        console.log("sxxdxdxdxd", response);
+      } catch (error) {
+        console.log("error after calling the api", error);
+      }
+
+      // must always subscribe to async functions
     };
+    apiRequest;
   }, []);
 
   return { loading, error, apiRequest };
