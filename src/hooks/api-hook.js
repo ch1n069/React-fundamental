@@ -11,27 +11,30 @@ const useApi = (requestConfig) => {
   const data = { car: "Mercedes Benz", YOM: "2007", make: "W203" };
   //   use effect to run the custom api
   // receives the type of request that it to be passed
-  useEffect(() => {
-    // api we will make requests to https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com
-    const apiRequest = async () => {
-      try {
-        const request = await axios
-          .post(`${import.meta.env.VITE_API_}`, {
-            body: data,
-          })
-          .then((response) => {
-            console.log("response after calling the api", response);
-          });
-        const response = request.data;
-        console.log("sxxdxdxdxd", response);
-      } catch (error) {
-        console.log("error after calling the api", error);
-      }
 
-      // must always subscribe to async functions
-    };
-    apiRequest;
-  }, []);
+  // api we will make requests to https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com
+  const apiRequest = async () => {
+    const url = import.meta.env.VITE_API_URL;
+    try {
+      // passing the method dynamically to the endpoint
+      const request = await axios
+        .post(
+          "https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com/data.json",
+          {
+            body: { car: "Mercedes Benz", YOM: "2007", make: "W203" },
+          }
+        )
+        .then((response) => {
+          console.log("response after calling the api", response);
+        });
+      const response = request.data;
+      console.log("sxxdxdxdxd", response);
+    } catch (error) {
+      console.log("error after calling the api", error);
+    }
+
+    // must always subscribe to async functions
+  };
 
   return { loading, error, apiRequest };
 };

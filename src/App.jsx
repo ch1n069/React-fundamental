@@ -8,11 +8,20 @@ import Home from "./components/Home";
 import Cart from "./components/Cart";
 // import useCounter from "./hooks/use-counter";
 import { useEffect } from "react";
+import useApi from "./hooks/api-hook";
 
 function App() {
+  const httpData = useApi({ method: "POST" });
+  const { loading, error, apiRequest } = httpData;
+
+  // const onClickButtonHandler = () => {
+  //   apiRequest();
+  // };
   return (
     <>
-      <div></div>
+      <div>
+        <button onClick={apiRequest}>mock request</button>
+      </div>
     </>
   );
 }
