@@ -17,8 +17,8 @@ const useApi = (requestConfig) => {
     const url = import.meta.env.VITE_API_URL;
     try {
       // passing the method dynamically to the endpoint
-      const request = await axios.requestConfig
-        .method(`${url}`, {
+      const request = await axios
+        .post(`${url}`, {
           body: data,
         })
         .then((response) => {
