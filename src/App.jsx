@@ -12,7 +12,7 @@ import useApi from "./hooks/api-hook";
 
 function App() {
   const httpData = useApi({ method: "POST" });
-  const { loading, error, apiRequest } = httpData;
+  const { loading, error, apiRequest, getRequest } = httpData;
 
   // const onClickButtonHandler = () => {
   //   apiRequest();
@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <div>
-        <button onClick={apiRequest}>mock request</button>
+        <button onClick={getRequest}>mock request</button>
       </div>
     </>
   );
