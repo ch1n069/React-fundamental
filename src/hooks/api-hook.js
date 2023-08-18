@@ -1,4 +1,4 @@
-import { react, useState, useEffect } from "react";
+import react, { useState, useEffect } from "react";
 import axios from "axios";
 
 // this function will receive the following props
