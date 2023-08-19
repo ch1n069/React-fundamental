@@ -16,7 +16,7 @@ function App() {
   const transformData = (taskObj) => {
     const loadedTask = [];
     for (const taskKey in taskObj) {
-      loadedTask.push({ id: taskKey, text: taskObj[taskKey].text });
+      loadedTask.push({ id: taskKey, text: taskObj[taskKey].body });
     }
     setLoadedData(loadedTask);
   };
@@ -28,9 +28,9 @@ function App() {
   // };
   useEffect(() => {
     // function called when the component loads to het data
-    // getData();
+    getData();
   }, []);
-  console.log(loadedData);
+  console.log("xxx is", loadedData);
   return (
     <>
       {/* {loadedData.map((item) => {
