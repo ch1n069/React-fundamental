@@ -20,7 +20,7 @@ function App() {
     }
     setLoadedData(loadedTask);
   };
-  const httpData = useApi({ url: `${url}` }, transformData);
+  const httpData = useApi();
   const { loading, error, apiRequest, getRequest: getData } = httpData;
 
   // const onClickButtonHandler = () => {
@@ -28,7 +28,7 @@ function App() {
   // };
   useEffect(() => {
     // function called when the component loads to het data
-    getData();
+    getData({ url: `${url}` }, transformData);
   }, []);
   console.log("xxx is", loadedData);
   return (
