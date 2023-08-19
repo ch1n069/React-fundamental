@@ -1,15 +1,16 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 // this function will receive the following props
 // we will pass custom requestConfig object to as props
 // the request config object include the method , body , url etc
-const useApi = (requestConfig, applyData) => {
+const useApi = useCallback((requestConfig, applyData) => {
   // logic errors and loading state
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [apiData, setApiData] = useState();
-  const data = { car: "G-Class", YOM: "2007", make: "G-" };
+
+  const data = { car: "W205", YOM: "2016", make: "E-Class" };
   //   use effect to run the custom api
   // receives the type of request that it to be passed
 
@@ -53,6 +54,9 @@ const useApi = (requestConfig, applyData) => {
   };
 
   return { loading, error, apiRequest, getRequest };
-};
+}, []);
+// implementation of the useCall back hoo this will prevent the recreation and avoidance of an infinite since
+// where when this hook is called it has state in state state updates cause re-renders
+// this will be called an infinite number of times
 
 export default useApi;
