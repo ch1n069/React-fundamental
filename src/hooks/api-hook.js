@@ -15,11 +15,11 @@ const useApi = (requestConfig) => {
 
   // api we will make requests to https://react-fundamentals-c4ee7-default-rtdb.firebaseio.com
   const apiRequest = async () => {
-    const url = import.meta.env.VITE_API_URL;
+    // const url = import.meta.env.VITE_API_URL;
     try {
       // passing the method dynamically to the endpoint
       const postRequest = await axios
-        .post(`${url}`, {
+        .post(`${requestConfig.url}`, {
           body: data,
         })
         .then((response) => {
@@ -37,11 +37,14 @@ const useApi = (requestConfig) => {
   // new function to handler the get request to fetch data from an api
   const getRequest = async () => {
     // fetching of the url from the env
-    const url = import.meta.env.VITE_API_URL;
+    setLoading(true);
+    // const url = import.meta.env.VITE_API_URL;
     try {
-      const request = await axios.get(`${url}`).then((response) => {
-        console.log("get request response is", response);
-      });
+      const request = await axios
+        .get(`${requestConfig.url}`)
+        .then((response) => {
+          console.log("get request response is", response);
+        });
     } catch (error) {
       console.log("error after using the get request");
     }

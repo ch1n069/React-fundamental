@@ -11,7 +11,8 @@ import { useEffect } from "react";
 import useApi from "./hooks/api-hook";
 
 function App() {
-  const httpData = useApi({ method: "POST" });
+  const url = import.meta.env.VITE_API_URL;
+  const httpData = useApi({ url: `${url}` });
   const { loading, error, apiRequest, getRequest } = httpData;
 
   // const onClickButtonHandler = () => {
