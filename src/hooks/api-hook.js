@@ -4,7 +4,7 @@ import axios from "axios";
 // this function will receive the following props
 // we will pass custom requestConfig object to as props
 // the request config object include the method , body , url etc
-const useApi = (requestConfig) => {
+const useApi = (requestConfig, applyData) => {
   // logic errors and loading state
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -26,6 +26,7 @@ const useApi = (requestConfig) => {
           console.log("response after calling the api", response);
         });
       const response = postRequest.data;
+
       console.log("sxxdxdxdxd", response);
     } catch (error) {
       console.log("error after calling the api", error);
@@ -43,6 +44,7 @@ const useApi = (requestConfig) => {
       const request = await axios
         .get(`${requestConfig.url}`)
         .then((response) => {
+          applyData(response.data);
           console.log("get request response is", response);
         });
     } catch (error) {
